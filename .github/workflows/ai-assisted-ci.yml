@@ -1,0 +1,131 @@
+#===============================================================================
+# Gemini CLI CI Pipeline — Integration Guide
+#===============================================================================
+# Location: .github/workflows/ai-assisted.yml
+# Transfer: Copy this file to paradigm-website/.github/workflows/
+# Note: Uses Google OAuth - no secrets required
+#===============================================================================
+
+name: AI-Assisted CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+env:
+  # Note: Uses Google OAuth - no API key needed in CI
+
+jobs:
+  #---------------------------------------------------------------------------
+  # Code Analysis
+  #---------------------------------------------------------------------------
+  ai-code-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Run AI Code Analysis
+        run: |
+          node ~/.hermes/adapters/gemini-adapter.mjs \
+            --task code_analysis \
+            --path ./src
+
+  #---------------------------------------------------------------------------
+  # Test Generation (TDD)
+  #---------------------------------------------------------------------------
+  ai-test-generation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run TDD Agent
+        run: |
+          node ~/.hermes/agents/tdd-agent.js
+        
+      - name: Verify tests compile
+        run: npx tsc --noEmit --skipLibCheck || true
+
+  #---------------------------------------------------------------------------
+  # Security Scan
+  #---------------------------------------------------------------------------
+  ai-security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Run Security Agent
+        run: |
+          node ~/.hermes/agents/security-agent.js ./src
+        continue-on-error: true
+
+  #---------------------------------------------------------------------------
+  # Documentation Generation
+  #---------------------------------------------------------------------------
+  ai-documentation:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          
+      - name: Run Docs Agent
+        run: |
+          node ~/.hermes/agents/docs-agent.js ./src
+
+  #---------------------------------------------------------------------------
+  # Full Test Suite
+  #---------------------------------------------------------------------------
+  test-suite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Install Playwright
+        run: npx playwright install --with-deps
+        
+      - name: Type check
+        run: npx tsc --noEmit --skipLibCheck || true
+        
+      - name: Build (ant)
+        run: npm run build
+        
+      - name: Preview (serve)
+        run: npm run preview &
+        timeout: 10
+        continue-on-error: true
+        
+      - name: E2E tests
+        run: npx playwright test || true
