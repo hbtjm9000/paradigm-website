@@ -1,5 +1,5 @@
 ---
-const navItems = [
+const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/services', label: 'Services' },
   { href: '/landings/element', label: 'Elements' },
@@ -7,94 +7,115 @@ const navItems = [
   { href: '/contact', label: 'Contact' },
 ];
 
-const currentPath = Astro.url.pathname;
+const pathname = Astro.url.pathname;
 ---
 
-<header class="glass-dark sticky top-0 z-40">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-    <div class="flex justify-between items-center h-20">
-      <a href="/" class="flex items-center space-x-3" aria-label="Paradigm IT Services Home">
-        <svg class="h-10 w-10 text-primary" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
-          <path d="M12 20L20 12L28 20L20 28L12 20Z" fill="currentColor"/>
-          <circle cx="20" cy="20" r="4" fill="white"/>
-        </svg>
-        <span class="font-bold text-xl text-white hidden sm:block">Paradigm IT</span>
-      </a>
-      
-      <div class="hidden md:flex items-center space-x-8">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
+<header class="fixed top-0 z-50 w-full bg-slate-900/80 backdrop-blur-xl border-b border-white/10">
+  <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+    <!-- Logo + Brand -->
+    <a href="/" class="flex items-center gap-3 group" aria-label="Paradigm IT Services home">
+      <img 
+        src="/assets/logos/logo-white.svg" 
+        alt="Paradigm IT Services" 
+        class="h-9 w-auto"
+        width="160"
+        height="36"
+        loading="eager"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul class="hidden md:flex items-center gap-8" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a 
+            href={link.href}
             class:list={[
-              'text-sm font-medium transition-colors duration-200',
-              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-                ? 'text-primary'
-                : 'text-gray-300 hover:text-white'
+              'font-fraunces italic text-sm tracking-wide transition-colors duration-200',
+              pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                ? 'text-white'
+                : 'text-white/60 hover:text-white'
             ]}
-            aria-current={currentPath === item.href ? 'page' : undefined}
           >
-            {item.label}
+            {link.label}
           </a>
-        ))}
-        <a href="/contact" class="btn-primary text-sm">Get Started</a>
-      </div>
-      
-      <button
-        id="mobile-menu-btn"
-        class="md:hidden p-2 text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-        aria-label="Toggle menu"
-      >
-        <svg id="menu-icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-        <svg id="menu-icon-close" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
-    
-    <div id="mobile-menu" class="md:hidden hidden pb-4">
-      <div class="flex flex-col space-y-3 pt-4 border-t border-white/10">
-        {navItems.map((item) => (
-          <a
-            href={item.href}
-            class:list={[
-              'text-base font-medium py-2 px-3 transition-colors duration-200',
-              currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href))
-                ? 'text-primary bg-white/5'
-                : 'text-gray-300 hover:text-white hover:bg-white/5'
-            ]}
-            aria-current={currentPath === item.href ? 'page' : undefined}
-          >
-            {item.label}
-          </a>
-        ))}
-        <a href="/contact" class="btn-primary text-center mt-2">Get Started</a>
-      </div>
-    </div>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop CTA -->
+    <a 
+      href="/contact" 
+      class="hidden md:inline-flex items-center gap-2 bg-primary text-white uppercase text-xs font-space font-semibold tracking-widest px-6 py-2.5 hover:bg-secondary transition-colors duration-200"
+    >
+      Get Started
+    </a>
+
+    <!-- Mobile Hamburger -->
+    <button 
+      id="mobile-menu-toggle" 
+      class="md:hidden flex flex-col gap-1.5 p-2 text-white"
+      aria-label="Toggle mobile menu"
+      aria-expanded="false"
+    >
+      <span class="block w-5 h-0.5 bg-white/80 transition-all duration-200" id="bar1"></span>
+      <span class="block w-5 h-0.5 bg-white/80 transition-all duration-200" id="bar2"></span>
+      <span class="block w-3.5 h-0.5 bg-white/80 transition-all duration-200" id="bar3"></span>
+    </button>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div 
+    id="mobile-menu" 
+    class="md:hidden hidden bg-slate-900/95 border-t border-white/10"
+    aria-hidden="true"
+  >
+    <ul class="flex flex-col px-6 py-4 gap-4" role="list">
+      {navLinks.map(link => (
+        <li>
+          <a 
+            href={link.href}
+            class:list={[
+              'block font-fraunces italic text-base tracking-wide py-2',
+              pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href))
+                ? 'text-white'
+                : 'text-white/60'
+            ]}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li class="pt-2 border-t border-white/10">
+        <a 
+          href="/contact"
+          class="inline-flex items-center bg-primary text-white uppercase text-xs font-space font-semibold tracking-widest px-6 py-3 hover:bg-secondary transition-colors duration-200"
+        >
+          Get Started
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <script>
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuIconOpen = document.getElementById('menu-icon-open');
-  const menuIconClose = document.getElementById('menu-icon-close');
-  
-  mobileMenuBtn?.addEventListener('click', () => {
-    const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
-    mobileMenuBtn.setAttribute('aria-expanded', (!isExpanded).toString());
-    mobileMenu?.classList.toggle('hidden');
-    menuIconOpen?.classList.toggle('hidden');
-    menuIconClose?.classList.toggle('hidden');
-  });
-  
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !mobileMenu?.classList.contains('hidden')) {
-      mobileMenuBtn?.click();
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+  let isOpen = false;
+
+  toggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    menu?.classList.toggle('hidden', !isOpen);
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+    toggle?.setAttribute('aria-expanded', String(isOpen));
+    if (bar1) bar1.style.transform = isOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+    if (bar2) bar2.style.opacity = isOpen ? '0' : '1';
+    if (bar3) {
+      bar3.style.width = isOpen ? '1.25rem' : '0.875rem';
+      bar3.style.transform = isOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
     }
   });
 </script>

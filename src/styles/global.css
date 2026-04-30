@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,46 +8,120 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     font-family: 'Outfit', system-ui, sans-serif;
-    @apply text-ink antialiased;
+    @apply text-on-surface antialiased;
+    background-color: #f9f9fa;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Fraunces', serif;
-    @apply font-semibold text-secondary;
+    @apply font-semibold;
+    color: #191c1d;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white px-6 py-3 font-medium transition-all duration-200 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply bg-primary text-white px-8 py-4 font-label uppercase tracking-widest text-sm;
+    @apply transition-all duration-200;
+    @apply hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
   }
-  
+
   .btn-secondary {
-    @apply bg-secondary text-white px-6 py-3 font-medium transition-all duration-200 hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+    @apply bg-transparent text-white px-8 py-4 font-label uppercase tracking-widest text-sm;
+    @apply border border-white/20;
+    @apply transition-all duration-200;
+    @apply hover:bg-secondary hover:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
   }
-  
+
   .btn-ghost {
-    @apply bg-transparent text-primary px-6 py-3 font-medium transition-all duration-200 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+    @apply bg-transparent text-primary px-6 py-3 font-medium;
+    @apply transition-all duration-200;
+    @apply hover:underline hover:underline-offset-4;
   }
-  
+
+  .btn-cyan {
+    @apply bg-secondary-fixed text-on-surface px-8 py-4 font-label uppercase tracking-widest text-sm font-semibold;
+    @apply transition-all duration-200;
+    @apply hover:bg-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  }
+
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24;
   }
-  
+
   .card {
-    @apply bg-white p-6 transition-all duration-300 hover:bg-surface;
+    @apply bg-white p-8 transition-all duration-300;
+    /* Tonal separation: no shadow, white on surface */
   }
-  
+
   .glass-dark {
-    @apply bg-glass-dark backdrop-blur-md border border-white/10;
+    @apply bg-inverse/80 backdrop-blur-xl border-b border-white/5;
+  }
+
+  .glass-nav {
+    @apply bg-slate-900/80 backdrop-blur-xl;
+  }
+
+  /* Ink-bleed text shadow for hero headlines */
+  .ink-bleed {
+    text-shadow: 0 4px 24px rgba(25, 28, 29, 0.6);
+  }
+
+  /* Tag / chip — cyan technical accent */
+  .tag {
+    @apply bg-secondary-fixed text-on-surface px-3 py-1;
+    @apply font-label uppercase tracking-widest text-xs font-medium;
+  }
+
+  /* Underline form inputs */
+  .input-underline {
+    @apply w-full bg-transparent border-0 border-b-2 border-on-surface/20;
+    @apply px-0 py-3 text-on-surface;
+    @apply placeholder:text-on-surface/40;
+    @apply focus:outline-none focus:border-primary focus:border-b-2;
+    @apply transition-colors duration-200;
+  }
+
+  /* Card hover: color shift to tertiary + text inversion */
+  .card-hover {
+    @apply bg-white p-8 transition-all duration-300 cursor-pointer;
+    @apply hover:bg-tertiary hover:text-white;
+  }
+
+  .card-hover h3,
+  .card-hover p {
+    @apply transition-colors duration-300;
+  }
+
+  .card-hover:hover h3 {
+    @apply text-white;
+  }
+
+  .card-hover:hover p {
+    @apply text-white/80;
+  }
+
+  .card-hover:hover a {
+    @apply text-white underline underline-offset-4;
+  }
+
+  /* Label style: uppercase, wide tracking */
+  .label {
+    @apply font-label uppercase tracking-widest text-xs text-on-surface/60;
+  }
+
+  /* Ghost border: outline-variant at 15% opacity for complex layouts */
+  .ghost-border {
+    @apply border border-on-surface/15;
   }
 }
 
 .skip-link {
-  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-primary focus:text-white focus:px-4 focus:py-3;
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50;
+  @apply focus:bg-primary focus:text-white focus:px-4 focus:py-3;
 }
 
 *:focus-visible {

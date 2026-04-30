@@ -1,243 +1,208 @@
 ---
-interface Props {
-  title?: string;
-  description?: string;
-}
-
-const { title = 'Book a Meeting with Our CEO', description = 'Fill out the form below and we will get back to you within 24 hours.' } = Astro.props;
-
 const businessPhases = [
-  { value: '', label: 'Select your business phase' },
-  { value: 'startup', label: 'Startup (0-1 years)' },
-  { value: 'early', label: 'Early Growth (1-3 years)' },
-  { value: 'established', label: 'Established (3-10 years)' },
-  { value: 'enterprise', label: 'Enterprise (10+ years)' },
+  { value: '', label: 'Select your phase' },
+  { value: 'startup', label: 'Just Starting Out' },
+  { value: 'growing', label: 'Growing & Scaling' },
+  { value: 'optimizing', label: 'Optimizing Operations' },
+  { value: 'transforming', label: 'Digital Transformation' },
 ];
 ---
 
-<section class="max-w-2xl mx-auto">
-  <div class="bg-white p-8 border border-gray-200">
-    <h2 class="text-2xl font-display font-semibold text-secondary mb-2">{title}</h2>
-    <p class="text-ink-muted mb-8">{description}</p>
-    
-    <form id="contact-form" class="space-y-6" novalidate>
-      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
-      
-      <div>
-        <label for="name" class="block text-sm font-medium text-ink mb-2">
-          Name <span class="text-red-500" aria-hidden="true">*</span>
-          <span class="sr-only">(required)</span>
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
+<section class="w-full" aria-label="Contact form">
+  <form 
+    id="contact-form" 
+    class="space-y-6" 
+    novalidate
+    aria-label="Contact Paradigm IT Services"
+  >
+    <!-- Honeypot (spam prevention) -->
+    <input 
+      type="text" 
+      name="website" 
+      tabindex="-1" 
+      autocomplete="off"
+      class="hidden"
+      aria-hidden="true"
+    />
+
+    <!-- Name -->
+    <div class="form-field">
+      <label for="name" class="label">
+        Full Name <span class="text-error" aria-label="required">*</span>
+      </label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required
+        autocomplete="name"
+        class="input-underline"
+        placeholder="Marcus Brown"
+        aria-required="true"
+      />
+      <span class="field-error hidden" id="name-error" role="alert"></span>
+    </div>
+
+    <!-- Email -->
+    <div class="form-field">
+      <label for="email" class="label">
+        Email Address <span class="text-error" aria-label="required">*</span>
+      </label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        required
+        autocomplete="email"
+        class="input-underline"
+        placeholder="marcus@yourbusiness.com"
+        aria-required="true"
+      />
+      <span class="field-error hidden" id="email-error" role="alert"></span>
+    </div>
+
+    <!-- Phone -->
+    <div class="form-field">
+      <label for="phone" class="label">Phone Number</label>
+      <input 
+        type="tel" 
+        id="phone" 
+        name="phone" 
+        autocomplete="tel"
+        class="input-underline"
+        placeholder="+1 (876) 555-0199"
+      />
+    </div>
+
+    <!-- Business Phase -->
+    <div class="form-field">
+      <label for="business_phase" class="label">
+        Business Phase <span class="text-error" aria-label="required">*</span>
+      </label>
+      <div class="select-wrapper">
+        <select 
+          id="business_phase" 
+          name="business_phase" 
           required
-          minlength="2"
-          autocomplete="name"
-          class="w-full px-0 py-3 bg-transparent border-b-2 border-gray-300 focus:border-primary focus:ring-0 transition-colors text-ink placeholder-ink-faded"
-          placeholder="Your full name"
-          aria-describedby="name-error"
-        />
-        <p id="name-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></p>
-      </div>
-      
-      <div>
-        <label for="email" class="block text-sm font-medium text-ink mb-2">
-          Email <span class="text-red-500" aria-hidden="true">*</span>
-          <span class="sr-only">(required)</span>
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          autocomplete="email"
-          class="w-full px-0 py-3 bg-transparent border-b-2 border-gray-300 focus:border-primary focus:ring-0 transition-colors text-ink placeholder-ink-faded"
-          placeholder="you@yourbusiness.com"
-          aria-describedby="email-error"
-        />
-        <p id="email-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></p>
-      </div>
-      
-      <div>
-        <label for="phone" class="block text-sm font-medium text-ink mb-2">
-          Phone <span class="text-ink-faded">(optional)</span>
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          autocomplete="tel"
-          class="w-full px-0 py-3 bg-transparent border-b-2 border-gray-300 focus:border-primary focus:ring-0 transition-colors text-ink placeholder-ink-faded"
-          placeholder="+1 (876) 000-0000"
-        />
-      </div>
-      
-      <div>
-        <label for="business_phase" class="block text-sm font-medium text-ink mb-2">
-          Business Phase <span class="text-red-500" aria-hidden="true">*</span>
-          <span class="sr-only">(required)</span>
-        </label>
-        <select
-          id="business_phase"
-          name="business_phase"
-          required
-          class="w-full px-0 py-3 bg-transparent border-b-2 border-gray-300 focus:border-primary focus:ring-0 transition-colors text-ink"
-          aria-describedby="business_phase-error"
+          class="input-underline select-underline"
+          aria-required="true"
         >
-          {businessPhases.map((phase) => (
-            <option value={phase.value}>{phase.label}</option>
+          {businessPhases.map(opt => (
+            <option value={opt.value}>{opt.label}</option>
           ))}
         </select>
-        <p id="business_phase-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></p>
-      </div>
-      
-      <div>
-        <label for="biggest_impact" class="block text-sm font-medium text-ink mb-2">
-          What would have the biggest impact for your business? <span class="text-red-500" aria-hidden="true">*</span>
-          <span class="sr-only">(required)</span>
-        </label>
-        <textarea
-          id="biggest_impact"
-          name="biggest_impact"
-          required
-          minlength="10"
-          rows="4"
-          class="w-full px-0 py-3 bg-transparent border-b-2 border-gray-300 focus:border-primary focus:ring-0 transition-colors text-ink placeholder-ink-faded resize-none"
-          placeholder="Tell us about your biggest challenges or goals..."
-          aria-describedby="biggest_impact-error"
-        ></textarea>
-        <p id="biggest_impact-error" class="mt-1 text-sm text-red-600 hidden" role="alert"></p>
-      </div>
-      
-      <div>
-        <button type="submit" class="btn-primary w-full text-lg py-4">
-          <span id="submit-text">Request Consultation</span>
-          <span id="submit-loading" class="hidden">
-            <svg class="animate-spin h-5 w-5 inline ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-          </span>
-        </button>
-      </div>
-    </form>
-    
-    <div id="success-message" class="hidden text-center py-8">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 mb-4">
-        <svg class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
         </svg>
       </div>
-      <h3 class="text-xl font-display font-semibold text-secondary mb-2">Thank You!</h3>
-      <p class="text-ink-muted">We have received your request and will be in touch within 24 hours.</p>
+      <span class="field-error hidden" id="phase-error" role="alert"></span>
     </div>
-    
-    <div id="error-message" class="hidden text-center py-8">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-red-100 mb-4">
-        <svg class="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+
+    <!-- Biggest Impact -->
+    <div class="form-field">
+      <label for="biggest_impact" class="label">
+        What would have the biggest impact? <span class="text-error" aria-label="required">*</span>
+      </label>
+      <textarea 
+        id="biggest_impact" 
+        name="biggest_impact" 
+        rows="4" 
+        required
+        class="input-underline resize-none"
+        placeholder="Tell us about your biggest IT challenge or goal..."
+        aria-required="true"
+      ></textarea>
+      <span class="field-error hidden" id="impact-error" role="alert"></span>
+    </div>
+
+    <!-- Submit -->
+    <div class="pt-2">
+      <button 
+        type="submit" 
+        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary text-white uppercase text-sm font-space font-semibold tracking-widest px-8 py-4 hover:bg-secondary transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      >
+        <span id="submit-text">Send Message</span>
+        <svg id="submit-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
-      </div>
-      <h3 class="text-xl font-display font-semibold text-secondary mb-2">Something went wrong</h3>
-      <p class="text-ink-muted">Please try again or contact us directly at <a href="mailto:hello@serviceparadigm.com" class="text-primary hover:underline">hello@serviceparadigm.com</a></p>
+      </button>
     </div>
+  </form>
+
+  <!-- Success message -->
+  <div id="form-success" class="hidden mt-6 p-6 border-l-4 border-secondary bg-secondary/5" role="status" aria-live="polite">
+    <p class="font-fraunces font-semibold text-secondary text-lg mb-2">Message received.</p>
+    <p class="font-outfit text-on-surface-variant text-sm">
+      We typically respond within one business day. Looking forward to connecting.
+    </p>
+  </div>
+
+  <!-- Error message -->
+  <div id="form-error" class="hidden mt-6 p-6 border-l-4 border-error bg-error/5" role="alert" aria-live="assertive">
+    <p class="font-outfit text-error text-sm">
+      Something went wrong. Please try again or email us directly at 
+      <a href="mailto:hello@serviceparadigm.com" class="underline">hello@serviceparadigm.com</a>.
+    </p>
   </div>
 </section>
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successEl = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
   const submitText = document.getElementById('submit-text');
-  const submitLoading = document.getElementById('submit-loading');
-  const successMessage = document.getElementById('success-message');
-  const errorMessage = document.getElementById('error-message');
-  
+
   function showError(fieldId: string, message: string) {
-    const errorEl = document.getElementById(`${fieldId}-error`);
-    const inputEl = document.getElementById(fieldId);
-    if (errorEl && inputEl) {
-      errorEl.textContent = message;
-      errorEl.classList.remove('hidden');
-      inputEl.classList.add('border-red-500');
-      inputEl.setAttribute('aria-invalid', 'true');
+    const errorSpan = document.getElementById(`${fieldId}-error`);
+    const input = document.getElementById(fieldId) as HTMLInputElement;
+    if (errorSpan) {
+      errorSpan.textContent = message;
+      errorSpan.classList.remove('hidden');
     }
+    if (input) input.classList.add('border-error');
   }
-  
+
   function clearErrors() {
-    document.querySelectorAll('[id$="-error"]').forEach(el => el?.classList.add('hidden'));
-    document.querySelectorAll('input, select, textarea').forEach(el => {
-      el.classList.remove('border-red-500');
-      el.removeAttribute('aria-invalid');
-    });
+    document.querySelectorAll('.field-error').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.border-error').forEach(el => el.classList.remove('border-error'));
   }
-  
-  function validateForm(data: FormData): boolean {
+
+  function validate(data: FormData): boolean {
     clearErrors();
-    let isValid = true;
-    
-    const name = data.get('name') as string;
-    if (!name || name.trim().length < 2) {
-      showError('name', 'Please enter your name (at least 2 characters)');
-      isValid = false;
-    }
-    
-    const email = data.get('email') as string;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRegex.test(email)) {
-      showError('email', 'Please enter a valid email address');
-      isValid = false;
-    }
-    
-    const businessPhase = data.get('business_phase') as string;
-    if (!businessPhase) {
-      showError('business_phase', 'Please select your business phase');
-      isValid = false;
-    }
-    
-    const biggestImpact = data.get('biggest_impact') as string;
-    if (!biggestImpact || biggestImpact.trim().length < 10) {
-      showError('biggest_impact', 'Please describe your biggest impact (at least 10 characters)');
-      isValid = false;
-    }
-    
-    return isValid;
+    let valid = true;
+    if (!String(data.get('name')).trim()) { showError('name', 'Please enter your name.'); valid = false; }
+    const email = String(data.get('email')).trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('email', 'Please enter a valid email.'); valid = false; }
+    if (!String(data.get('business_phase'))) { showError('phase', 'Please select a business phase.'); valid = false; }
+    if (!String(data.get('biggest_impact')).trim()) { showError('impact', 'Please tell us about your biggest impact.'); valid = false; }
+    return valid;
   }
-  
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+    errorEl?.classList.add('hidden');
     const data = new FormData(form);
     
-    if (data.get('_gotcha')) {
-      return;
-    }
+    // Honeypot check
+    if (data.get('website')) return;
     
-    if (!validateForm(data)) {
-      return;
-    }
+    if (!validate(data)) return;
     
-    submitText?.classList.add('hidden');
-    submitLoading?.classList.remove('hidden');
+    if (submitBtn) submitBtn.disabled = true;
+    if (submitText) submitText.textContent = 'Sending...';
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      // Form submission handler — wire to Netlify Forms, Formspree, or custom endpoint.
+      // Example Netlify: add netlify attribute to <form>.
+      // Example Formspree: POST to https://formspree.io/f/YOUR_ID.
+      await new Promise(resolve => setTimeout(resolve, 800));
       form.classList.add('hidden');
-      successMessage?.classList.remove('hidden');
-      
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'generate_lead', {
-          event_category: 'engagement',
-          event_label: 'contact_form'
-        });
-      }
-    } catch (error) {
-      form.classList.add('hidden');
-      errorMessage?.classList.remove('hidden');
-    } finally {
-      submitText?.classList.remove('hidden');
-      submitLoading?.classList.add('hidden');
+      successEl?.classList.remove('hidden');
+    } catch {
+      errorEl?.classList.remove('hidden');
+      if (submitBtn) submitBtn.disabled = false;
+      if (submitText) submitText.textContent = 'Send Message';
     }
   });
 </script>

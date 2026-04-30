@@ -2,13 +2,51 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Page Not Found" description="The page you are looking for could not be found.">
-  <section class="min-h-[60vh] flex items-center justify-center">
-    <div class="text-center">
-      <div class="text-9xl font-bold text-primary/20 mb-4">404</div>
-      <h1 class="text-3xl font-bold text-secondary mb-4">Page Not Found</h1>
-      <p class="text-gray-600 mb-8">Sorry, the page you are looking for does not exist or has been moved.</p>
-      <a href="/" class="btn-primary">Go Home</a>
+<BaseLayout 
+  title="Page Not Found — Paradigm IT Services"
+  description="The page you were looking for doesn't exist."
+>
+  <section class="min-h-screen flex items-center justify-center bg-tertiary relative overflow-hidden">
+    <!-- Background pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" 
+      style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 64px 64px;">
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+      <!-- 404 -->
+      <p class="font-space text-xs font-semibold uppercase tracking-[0.4em] text-secondary-fixed mb-6">
+        Error 404
+      </p>
+      
+      <h1 class="font-fraunces font-bold text-white text-[10rem] md:text-[14rem] leading-none mb-6 drop-shadow-ink">
+        404
+      </h1>
+      
+      <h2 class="font-fraunces italic font-semibold text-white/80 text-2xl md:text-3xl mb-6">
+        Page Not Found
+      </h2>
+      
+      <p class="font-outfit font-light text-white/70 text-lg max-w-md mx-auto mb-12 leading-relaxed">
+        Looks like this page has gone on vacation. It may have moved, been deleted, or never existed in the first place.
+      </p>
+      
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a 
+          href="/"
+          class="inline-flex items-center gap-2 bg-white text-primary uppercase text-sm font-space font-semibold tracking-widest px-8 py-4 hover:bg-surface transition-colors duration-200"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Back to Home
+        </a>
+        <a 
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-transparent border border-white/30 text-white uppercase text-sm font-space font-semibold tracking-widest px-8 py-4 hover:bg-white/10 transition-colors duration-200"
+        >
+          Contact Us
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>

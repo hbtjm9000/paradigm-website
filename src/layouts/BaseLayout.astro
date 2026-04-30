@@ -9,7 +9,11 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description = 'Paradigm IT Services - Engineering the Next Paradigm', ogImage = '/assets/og-image.jpg' } = Astro.props;
+const {
+  title,
+  description = 'Paradigm IT Services - Engineering the Next Paradigm',
+  ogImage = '/assets/og-image.jpg'
+} = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -19,46 +23,51 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <title>{title} | Paradigm IT Services</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={`${title} | Paradigm IT Services`} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={`${title} | Paradigm IT Services`} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    
+
+    <!-- Favicon: P-mark from brand logo -->
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-    
+
+    <!-- Google Fonts preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
-  <body class="min-h-screen flex flex-col bg-surface">
+  <body class="min-h-screen flex flex-col" style="background-color: #f9f9fa;">
     <a href="#main-content" class="skip-link">Skip to main content</a>
-    
+
     <Header />
-    
+
     <main id="main-content" class="flex-1">
       <slot />
     </main>
-    
+
     <Footer />
-    
+
+    <!-- Schema.org: ProfessionalService -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "Paradigm IT Services",
-        "description": "IT Services and Digital Transformation for Caribbean Businesses",
+        "alternateName": "Paradigm IT",
+        "description": "IT Services, Digital Transformation, and AI Integration for Caribbean Businesses",
         "url": "https://serviceparadigm.com",
         "telephone": "+1-876-XXX-XXXX",
+        "email": "hello@serviceparadigm.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Kingston",
@@ -75,7 +84,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
           "opens": "09:00",
           "closes": "17:00"
-        }
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "Jamaica" },
+          { "@type": "Country", "name": "Caribbean" }
+        ],
+        "serviceType": ["IT Consulting", "Digital Transformation", "Managed Services", "AI Integration"]
       }
     </script>
   </body>

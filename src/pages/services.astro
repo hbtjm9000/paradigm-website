@@ -1,104 +1,56 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServiceCard from '../components/ServiceCard.astro';
+import Button from '../components/Button.astro';
 import { getServices } from '../utils/content-loader';
 
-const services = await getServices();
-
-const allServices = [
-  ...services,
-  {
-    title: 'Cloud Infrastructure',
-    description: 'Scalable cloud solutions using AWS, Azure, and Google Cloud. Migration, deployment, and ongoing management.',
-    icon: 'consulting',
-    slug: 'cloud',
-  },
-  {
-    title: 'Cybersecurity',
-    description: 'Comprehensive security assessments, threat monitoring, and compliance solutions for Caribbean businesses.',
-    icon: 'managed-services',
-    slug: 'security',
-  },
-  {
-    title: 'Web Development',
-    description: 'Custom web applications, e-commerce platforms, and digital experiences built with modern technologies.',
-    icon: 'digital-transformation',
-    slug: 'webdev',
-  },
-];
+const services = getServices();
 ---
 
-<BaseLayout title="Services" description="IT Services including Digital Transformation, AI Consulting, and Managed Services for Caribbean businesses. SLA-backed support from Kingston, Jamaica.">
-  <section class="bg-gradient-to-br from-tertiary via-secondary/20 to-tertiary text-white py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-display-lg font-display font-bold mb-6">What We Do</h1>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-        Comprehensive IT solutions designed for Caribbean businesses. From strategy to implementation, we are your technology partner.
+<BaseLayout 
+  title="Services — Paradigm IT Services"
+  description="End-to-end IT services: digital transformation, AI consulting, and managed services for Caribbean businesses."
+>
+  <!-- Page Header -->
+  <section class="pt-32 pb-16 bg-surface border-b border-on-surface/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <span class="font-space text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-4 block">What We Offer</span>
+      <h1 class="font-fraunces font-bold text-secondary text-5xl md:text-6xl leading-tight mb-6 max-w-3xl">
+        Our Services
+      </h1>
+      <p class="font-outfit text-on-surface-variant text-xl max-w-2xl leading-relaxed">
+        From AI integration to day-to-day IT management, we provide the full range of technology services your business needs to compete and grow.
       </p>
     </div>
   </section>
 
-  <section class="py-20 lg:py-28 bg-surface">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Services Grid -->
+  <section class="py-24 bg-white" aria-label="Services list">
+    <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allServices.map((service) => (
-          <ServiceCard
+        {services.map((service, i) => (
+          <ServiceCard 
             title={service.title}
             description={service.description}
-            icon={service.icon as string}
-            href={`#${service.slug}`}
+            icon={service.icon}
+            href={`/services#${service.slug}`}
+            featured={i === 0}
           />
         ))}
       </div>
     </div>
   </section>
 
-  <section class="py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-display-md font-display font-bold text-secondary mb-4">Our Process</h2>
-        <p class="text-xl text-ink-muted max-w-2xl mx-auto">
-          A proven methodology to deliver results on time and within budget.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white text-2xl font-bold font-mono mb-6">1</div>
-          <h3 class="text-xl font-display font-semibold text-secondary mb-3">Discovery</h3>
-          <p class="text-ink-muted">We understand your business, challenges, and goals through comprehensive consultation.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white text-2xl font-bold font-mono mb-6">2</div>
-          <h3 class="text-xl font-display font-semibold text-secondary mb-3">Strategy</h3>
-          <p class="text-ink-muted">We develop a tailored roadmap with clear milestones, timelines, and deliverables.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white text-2xl font-bold font-mono mb-6">3</div>
-          <h3 class="text-xl font-display font-semibold text-secondary mb-3">Implementation</h3>
-          <p class="text-ink-muted">We execute with precision, keeping you informed every step of the way.</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="inline-flex items-center justify-center w-16 h-16 bg-primary text-white text-2xl font-bold font-mono mb-6">4</div>
-          <h3 class="text-xl font-display font-semibold text-secondary mb-3">Support</h3>
-          <p class="text-ink-muted">Ongoing optimization and SLA-backed support to ensure continued success.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 lg:py-28 bg-gradient-to-br from-primary to-primary/80 text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-display-sm font-display font-bold mb-6">Ready to Get Started?</h2>
-      <p class="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-        Book a consultation with our team and discover how we can help transform your business.
+  <!-- CTA -->
+  <section class="py-24 bg-tertiary" aria-labelledby="services-cta">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 id="services-cta" class="font-fraunces font-bold text-white text-3xl md:text-4xl mb-6">
+        Not sure what you need?
+      </h2>
+      <p class="font-outfit text-white/80 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+        Book a free 30-minute discovery call. We'll diagnose the problem and recommend next steps — no obligation.
       </p>
-      <a href="/contact" class="btn-secondary inline-block text-lg px-8 py-4">
-        Schedule a Consultation
-      </a>
+      <Button variant="secondary" href="/contact" label="Book Discovery Call" icon={true} />
     </div>
   </section>
 </BaseLayout>

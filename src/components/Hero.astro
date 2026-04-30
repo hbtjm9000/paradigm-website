@@ -1,57 +1,107 @@
 ---
 interface Props {
-  title: string;
-  subtitle?: string;
-  description: string;
-  primaryCta?: { href: string; label: string };
-  secondaryCta?: { href: string; label: string };
   align?: 'left' | 'center';
+  title?: string;
+  subtitle?: string;
+  tag?: string;
 }
 
-const {
-  title,
-  subtitle,
-  description,
-  primaryCta,
-  secondaryCta,
+const { 
   align = 'center',
+  title = 'Engineering the Next Paradigm.',
+  subtitle = 'IT solutions, digital transformation, and AI integration for Caribbean businesses.',
+  tag = 'Jamaica · Caribbean · North America',
 } = Astro.props;
 ---
 
-<section class:list={[
-  'min-h-screen flex items-center py-20',
-  'bg-gradient-to-br from-tertiary via-secondary/20 to-tertiary',
-  align === 'center' ? 'text-center' : 'text-left'
-]}>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    {subtitle && (
-      <p class="text-primary font-mono text-sm sm:text-base uppercase tracking-widest mb-6">
+<section 
+  class:list={[
+    'relative min-h-screen flex items-center overflow-hidden',
+    'pt-24 pb-16',
+    align === 'center' ? 'text-center' : 'text-left'
+  ]}
+  aria-label="Hero section"
+>
+  <!-- Background -->
+  <div class="absolute inset-0 bg-tertiary z-0">
+    <!-- Subtle grid pattern overlay -->
+    <div class="absolute inset-0 opacity-[0.03]" 
+      style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 48px 48px;">
+    </div>
+    <!-- Radial glow top-right -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] opacity-20"
+      style="background: radial-gradient(circle, rgba(28,220,217,0.3) 0%, transparent 70%); transform: translate(20%, -20%);">
+    </div>
+    <!-- Radial glow bottom-left -->
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] opacity-15"
+      style="background: radial-gradient(circle, rgba(163,57,0,0.4) 0%, transparent 70%); transform: translate(-30%, 30%);">
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class:list={[
+      'max-w-4xl',
+      align === 'center' ? 'mx-auto' : ''
+    ]}>
+      <!-- Tag chip -->
+      <div class="mb-8">
+        <span class="inline-block bg-secondary text-white font-space text-xs font-semibold uppercase tracking-[0.2em] px-4 py-1.5">
+          {tag}
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 
+        class:list={[
+          'font-fraunces font-bold text-white leading-[1.05] mb-8',
+          'drop-shadow-ink'
+        ]}
+        style="font-size: clamp(2.75rem, 7vw, 6rem);"
+      >
+        {title}
+      </h1>
+
+      <!-- Subline -->
+      <p class="font-outfit font-light text-white/80 text-lg md:text-xl leading-relaxed max-w-2xl mb-12"
+        style={align === 'center' ? 'margin-left: auto; margin-right: auto;' : ''}
+      >
         {subtitle}
       </p>
-    )}
-    
-    <h1 class="text-display-lg font-display font-bold text-white leading-tight mb-8">
-      {title}
-    </h1>
-    
-    <p class="text-xl text-gray-300 max-w-3xl mb-12 mx-auto">
-      {description}
-    </p>
-    
-    <div class:list={[
-      'flex flex-wrap gap-4',
-      align === 'center' ? 'justify-center' : 'justify-start'
-    ]}>
-      {primaryCta && (
-        <a href={primaryCta.href} class="btn-primary text-lg px-8 py-4">
-          {primaryCta.label}
+
+      <!-- CTAs -->
+      <div class:list={[
+        'flex flex-wrap gap-4',
+        align === 'center' ? 'justify-center' : 'justify-start'
+      ]}>
+        <a 
+          href="/contact"
+          class="inline-flex items-center gap-2 bg-primary text-white uppercase text-sm font-space font-semibold tracking-widest px-8 py-4 hover:bg-secondary transition-colors duration-200"
+        >
+          Book a Consultation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
-      )}
-      {secondaryCta && (
-        <a href={secondaryCta.href} class="border-2 border-white text-white px-8 py-4 text-lg font-medium hover:bg-white hover:text-tertiary transition-all duration-200">
-          {secondaryCta.label}
+        <a 
+          href="/services"
+          class="inline-flex items-center gap-2 bg-secondary text-white uppercase text-sm font-space font-semibold tracking-widest px-8 py-4 hover:bg-secondary/80 transition-colors duration-200"
+        >
+          View Services
         </a>
-      )}
+      </div>
     </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div 
+    class:list={[
+      'absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40',
+      align === 'left' ? 'left-auto right-8 translate-x-0' : ''
+    ]}
+    aria-hidden="true"
+  >
+    <span class="font-space text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+    <div class="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-pulse"></div>
   </div>
 </section>

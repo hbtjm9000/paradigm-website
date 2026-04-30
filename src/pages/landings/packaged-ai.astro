@@ -1,135 +1,133 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import ContactForm from '../../components/ContactForm.astro';
-
-const features = [
-  {
-    title: 'AI Strategy Workshop',
-    description: 'A comprehensive assessment of your business and identification of high-impact AI opportunities.',
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />`,
-  },
-  {
-    title: 'Custom AI Integration',
-    description: 'We implement AI solutions tailored to your specific workflows and business processes.',
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />`,
-  },
-  {
-    title: 'Team Training',
-    description: 'Hands-on training to ensure your team can effectively use and manage AI tools.',
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />`,
-  },
-  {
-    title: 'Ongoing Support',
-    description: 'SLA-backed support and optimization to ensure continued AI success.',
-    icon: `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />`,
-  },
-];
-
-const deliverables = [
-  'AI Opportunity Assessment Report',
-  'Custom Implementation Roadmap',
-  'Integrated AI Solutions (up to 3 workflows)',
-  'Staff Training Program (up to 10 participants)',
-  '30-Day Post-Implementation Support',
-  'Documentation and User Guides',
-];
+import Button from '../../components/Button.astro';
 ---
 
-<BaseLayout title="Packaged AI Solutions" description="AI integration made simple for Caribbean businesses. Our packaged AI solution includes strategy, implementation, training, and ongoing support.">
+<BaseLayout 
+  title="Packaged AI — Paradigm IT Services"
+  description="Ready-to-deploy AI solutions for Caribbean businesses. No PhD required — we build, deploy, and maintain everything."
+>
   <!-- Hero -->
-  <section class="bg-gradient-to-br from-secondary via-secondary to-primary/50 text-white py-20 lg:py-28">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center">
-        <span class="inline-block bg-primary/20 text-primary px-4 py-1 rounded-full text-sm font-semibold mb-6">
-          Limited Time Offer
+  <section class="pt-32 pb-24 bg-secondary relative overflow-hidden" aria-label="Packaged AI hero">
+    <div class="absolute inset-0 opacity-[0.05]" 
+      style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 48px 48px;">
+    </div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="max-w-3xl">
+        <span class="inline-block font-space text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-6 px-3 py-1.5 border border-primary/30">
+          Product · Packaged AI
         </span>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-          Packaged AI Solutions for Caribbean Businesses
+        <h1 class="font-fraunces font-bold text-white text-5xl md:text-7xl leading-tight mb-8 drop-shadow-ink">
+          AI That Works.<br/>Out of the Box.
         </h1>
-        <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-          Everything you need to leverage AI in your business. Strategy, implementation, training, and support—all in one package.
+        <p class="font-outfit font-light text-white/80 text-xl md:text-2xl leading-relaxed mb-10 max-w-2xl">
+          Pre-built AI solutions for the most common Caribbean business challenges — designed, deployed, and maintained by our team. No internal AI expertise required.
         </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="/contact" class="btn-primary bg-primary text-white text-lg px-8 py-4">
-            Get Started Today
-          </a>
-          <a href="#details" class="btn-outline text-white border-white hover:bg-white hover:text-secondary text-lg px-8 py-4">
-            Learn More
-          </a>
+        <div class="flex flex-wrap gap-4">
+          <Button href="/contact" label="See Pricing" icon={true} />
+          <Button variant="secondary" href="/contact" label="Book Consultation" />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What's Included -->
-  <section id="details" class="py-16 lg:py-24 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-secondary mb-4">What's Included</h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-          A complete package to bring AI into your business operations.
-        </p>
+  <!-- Solutions -->
+  <section class="py-24 bg-white" aria-labelledby="solutions-heading">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 max-w-2xl mx-auto">
+        <span class="font-space text-xs font-semibold uppercase tracking-[0.25em] text-secondary mb-4 block">What We Offer</span>
+        <h2 id="solutions-heading" class="font-fraunces font-bold text-secondary text-4xl md:text-5xl leading-tight">
+          Solutions Built for Real Caribbean Business Problems
+        </h2>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-        {features.map((feature) => (
-          <div class="bg-white rounded-xl p-6 shadow-md">
-            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true" set:html={feature.icon} />
-            </div>
-            <h3 class="text-lg font-bold text-secondary mb-2">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: 'AI Customer Service',
+            desc: 'Deploy a RAG-powered chatbot trained on your knowledge base. Handles 80% of customer queries automatically, routes the rest to your team.',
+            icon: 'chat',
+            timeline: '2–3 weeks to deploy',
+          },
+          {
+            title: 'Automated Reporting',
+            desc: 'Weekly or monthly reports generated from your data — sales, operations, financials — delivered to your inbox without manual work.',
+            icon: 'report',
+            timeline: '1–2 weeks to deploy',
+          },
+          {
+            title: 'Lead Qualification',
+            desc: 'AI that qualifies inbound leads, scores them by likelihood to convert, and routes them to the right salesperson.',
+            icon: 'filter',
+            timeline: '2–4 weeks to deploy',
+          },
+          {
+            title: 'Document Processing',
+            desc: 'Extract data from invoices, contracts, and forms automatically. Goodbye manual data entry.',
+            icon: 'doc',
+            timeline: '2–3 weeks to deploy',
+          },
+          {
+            title: 'Demand Forecasting',
+            desc: 'Predict inventory needs, staffing requirements, and cash flow with ML models trained on your historical data.',
+            icon: 'chart',
+            timeline: '3–6 weeks to deploy',
+          },
+          {
+            title: 'AI-Powered Search',
+            desc: 'Semantic search across your documents, emails, and databases. Find anything by asking in plain English.',
+            icon: 'search',
+            timeline: '1–2 weeks to deploy',
+          },
+        ].map(s => (
+          <div class="p-8 bg-surface group hover:bg-tertiary transition-colors duration-300">
+            <h3 class="font-fraunces font-semibold text-secondary group-hover:text-white text-xl mb-4 leading-snug transition-colors">{s.title}</h3>
+            <p class="font-outfit text-on-surface-variant group-hover:text-white/80 text-sm leading-relaxed mb-5 transition-colors">{s.desc}</p>
+            <p class="font-space text-xs uppercase tracking-wider text-secondary group-hover:text-white/70 transition-colors">{s.timeline}</p>
           </div>
         ))}
       </div>
-      
-      <!-- Deliverables -->
-      <div class="bg-white rounded-2xl shadow-xl p-8 lg:p-12 max-w-4xl mx-auto">
-        <h3 class="text-2xl font-bold text-secondary mb-6 text-center">Package Deliverables</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {deliverables.map((item) => (
-            <div class="flex items-center space-x-3">
-              <svg class="h-5 w-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span class="text-gray-700">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section class="py-16 lg:py-24">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold text-secondary mb-4">Investment</h2>
-      <p class="text-lg text-gray-600 mb-8">
-        A complete AI solution at a fixed price. No surprises.
-      </p>
-      <div class="bg-gradient-to-br from-primary to-primary/80 text-white rounded-2xl p-8 lg:p-12 shadow-2xl">
-        <div class="text-5xl lg:text-6xl font-bold mb-2">$4,999</div>
-        <div class="text-xl text-white/80 mb-8">One-time investment</div>
-        <a href="/contact" class="btn-secondary bg-white text-primary hover:bg-gray-100 text-lg px-8 py-4 inline-block">
-          Book Your Consultation
-        </a>
+  <!-- How It Works -->
+  <section class="py-24 bg-tertiary" aria-labelledby="how-heading">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="font-space text-xs font-semibold uppercase tracking-[0.25em] text-secondary-fixed mb-4 block">The Process</span>
+        <h2 id="how-heading" class="font-fraunces font-bold text-white text-4xl md:text-5xl leading-tight">
+          From Conversation to Production in Weeks
+        </h2>
       </div>
-      <p class="text-sm text-gray-500 mt-6">
-        Payment plans available. Satisfaction guaranteed.
-      </p>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        {[
+          { step: '01', title: 'Discovery', desc: '30-minute call to understand your business, data, and goals. No technical jargon.' },
+          { step: '02', title: 'Design', desc: 'We design the solution architecture and show you exactly how it will work.' },
+          { step: '03', title: 'Deploy', desc: 'We build, test, and deploy. You review and approve before going live.' },
+          { step: '04', title: 'Maintain', desc: 'Ongoing monitoring, updates, and improvements. You focus on your business.' },
+        ].map((item, i) => (
+          <div class="relative">
+            {i < 3 && (
+              <div class="hidden md:block absolute top-8 left-[60%] w-[80%] h-px bg-white/20" aria-hidden="true"></div>
+            )}
+            <p class="font-space text-xs font-semibold text-secondary-fixed mb-4">{item.step}</p>
+            <h3 class="font-fraunces font-semibold text-white text-xl mb-3">{item.title}</h3>
+            <p class="font-outfit text-white/70 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-16 lg:py-24 bg-secondary text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-6">Ready to Bring AI to Your Business?</h2>
-      <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
-        Book a consultation with our CEO and discover how Packaged AI can transform your operations.
+  <section class="py-24 bg-primary" aria-labelledby="packaged-cta">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 id="packaged-cta" class="font-fraunces font-bold text-white text-4xl md:text-5xl leading-tight mb-6">
+        Start with a Free Consultation
+      </h2>
+      <p class="font-outfit font-light text-white/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
+        No commitment required. We'll tell you honestly whether Packaged AI is the right fit for your business — and if not, we'll point you in the right direction.
       </p>
-      <div class="max-w-2xl mx-auto">
-        <ContactForm title="Get Started with Packaged AI" />
-      </div>
+      <Button href="/contact" label="Book Your Free Call" icon={true} />
     </div>
   </section>
 </BaseLayout>
