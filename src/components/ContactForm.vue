@@ -118,13 +118,36 @@ const isSubmitting = ref(false);
 const submitted = ref(false);
 const error = ref('');
 
+// Form submission endpoint - set after deploying Apps Script Web App
+const FORM_ENDPOINT = ''; // e.g. 'https://script.google.com/macros/s/.../exec'
+
 const handleSubmit = async () => {
   isSubmitting.value = true;
   error.value = '';
 
   try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    if (FORM_ENDPOINT) {
+      // Real API call to Google Apps Script
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          service: form.service,
+          message: form.message
+        })
+      });
+      
+      const result = await response.json();
+      if (!result.success) {
+        throw new Error(result.message);
+      }
+    } else {
+      // Fallback: simulate (remove after real endpoint configured)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+    }
     
     // Reset form
     form.name = '';

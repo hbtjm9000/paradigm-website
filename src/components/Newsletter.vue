@@ -43,24 +43,44 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+// Newsletter endpoint - set after deploying Apps Script Web App
+const NEWSLETTER_ENDPOINT = ''; // e.g. 'https://script.google.com/macros/s/.../exec'
+
 const email = ref('');
 const isSubmitting = ref(false);
 const submitted = ref(false);
 
 const handleSubmit = async () => {
+  if (!email.value || !email.value.includes('@')) return;
+  
   isSubmitting.value = true;
   
-  // Simulate API call
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  
-  submitted.value = true;
-  isSubmitting.value = false;
-  email.value = '';
-  
-  // Reset success message after 5 seconds
-  setTimeout(() => {
-    submitted.value = false;
-  }, 5000);
+  try {
+    if (NEWSLETTER_ENDPOINT) {
+      const response = await fetch(NEWSLETTER_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.value })
+      });
+      
+      const result = await response.json();
+      if (!result.success) throw new Error(result.message);
+} else {
+      // Fallback: simulate
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+    
+    submitted.value = true;
+    isSubmitting.value = false;
+    email.value = '';
+    
+    // Reset success message after 5 seconds
+    setTimeout(() => {
+      submitted.value = false;
+    }, 5000);
+  } catch (err) {
+    isSubmitting.value = false;
+  }
 };
 </script>
 
