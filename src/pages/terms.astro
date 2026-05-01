@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
 ---
 
 <BaseLayout
   title="Terms of Service"
   description="Terms of Service for Paradigm IT Services."
 >
-  <main class="bg-surface min-h-screen">
+  <Header logoVariant="grayscale" />
+  <main id="main" class="bg-surface min-h-screen">
     <section class="py-24 lg:py-32">
       <div class="max-w-3xl mx-auto px-6 lg:px-8">
         <h1 class="font-serif text-4xl lg:text-5xl text-on-surface">Terms of Service</h1>

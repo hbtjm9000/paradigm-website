@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
 import ContactForm from '../../components/ContactForm.astro';
 
 const features = [
@@ -36,6 +37,7 @@ const deliverables = [
 ---
 
 <BaseLayout title="Packaged AI Solutions" description="AI integration made simple for Caribbean businesses. Our packaged AI solution includes strategy, implementation, training, and ongoing support.">
+  <Header logoVariant="mono-white" />
   <!-- Hero -->
   <section class="bg-gradient-to-br from-secondary via-secondary to-primary/50 text-white py-20 lg:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
 ---
 
 <BaseLayout
   title="Accessibility Statement"
   description="Accessibility statement for Paradigm IT Services website."
 >
-  <main class="bg-surface min-h-screen">
+  <Header logoVariant="colored" />
+  <main id="main" class="bg-surface min-h-screen">
     <section class="py-24 lg:py-32">
       <div class="max-w-3xl mx-auto px-6 lg:px-8">
         <h1 class="font-serif text-4xl lg:text-5xl text-on-surface">Accessibility</h1>

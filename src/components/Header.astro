@@ -4,6 +4,12 @@ interface NavItem {
   href: string;
 }
 
+interface Props {
+  logoVariant?: 'colored' | 'mono-white' | 'mono-teal' | 'grayscale';
+}
+
+const { logoVariant = 'colored' } = Astro.props;
+
 const navItems: NavItem[] = [
   { label: 'Services', href: '/services' },
   { label: 'Elements', href: '/elements' },
@@ -19,7 +25,7 @@ const navItems: NavItem[] = [
       <!-- Logo -->
       <a href="/" class="flex items-center">
         <img
-          src="/images/paradigm-logo-header-colored.png"
+          src={`/images/paradigm-logo-header-${logoVariant}.png`}
           alt="Paradigm IT Services"
           width="200"
           height="45"
