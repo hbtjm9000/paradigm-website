@@ -1,43 +1,42 @@
 <template>
-  <section class="bg-tertiary py-20 lg:py-24">
-    <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+  <section class="bg-primary py-24 text-white overflow-hidden relative">
+    <div class="max-w-3xl mx-auto px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
       <!-- Headline -->
-      <h2 class="font-serif text-4xl lg:text-5xl text-white italic leading-[1.1]">
+      <h2 class="font-serif text-5xl lg:text-7xl text-white font-black mb-8">
         Join the Network.
       </h2>
-      
+
       <!-- Description -->
-      <p class="font-body text-white/70 mt-6 max-w-xl mx-auto leading-relaxed">
-        Receive technical briefs, white papers, and event invitations directly in your 
-        secure terminal.
+      <p class="font-body text-primary-fixed max-w-2xl mb-12 text-lg leading-relaxed">
+        Receive technical briefs, white papers, and event invitations directly in your secure terminal.
       </p>
 
       <!-- Form -->
-      <form @submit.prevent="handleSubmit" class="mt-10 flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+      <form @submit.prevent="handleSubmit" class="flex flex-col md:flex-row gap-0 w-full max-w-xl">
         <div class="flex-1 relative">
           <label for="newsletter-email" class="sr-only">Email address</label>
-          <input 
+          <input
             id="newsletter-email"
             v-model="email"
-            type="email" 
+            type="email"
             placeholder="ENCRYPTED EMAIL ADDRESS"
             required
-            class="w-full bg-transparent border-b-2 border-white/30 text-white placeholder:text-white/40 py-3 px-0 font-sans text-sm tracking-wider focus:outline-none focus:border-secondary-fixed-dim transition-colors"
+            class="w-full bg-white/10 border-0 focus:ring-0 text-white font-body placeholder:text-white/40 px-6 py-4"
           />
         </div>
-        <button 
+        <button
           type="submit"
           :disabled="isSubmitting"
-          class="bg-secondary text-on-secondary font-sans text-sm px-8 py-3 hover:bg-secondary-fixed-dim hover:text-tertiary transition-colors tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+          class="bg-slate-900 hover:bg-black text-white px-10 py-4 font-body font-bold uppercase tracking-widest text-sm transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {{ isSubmitting ? 'SUBMITTING...' : 'SUBMIT' }}
         </button>
       </form>
+    </div>
 
-      <!-- Success Message -->
-      <p v-if="submitted" class="mt-6 text-secondary-fixed-dim font-sans text-sm tracking-wide">
-        ✓ Successfully connected to the network.
-      </p>
+    <!-- Decorative background text -->
+    <div class="absolute -bottom-10 -right-20 text-[20rem] font-black text-white/5 font-serif pointer-events-none select-none" aria-hidden="true">
+      LEDGER
     </div>
   </section>
 </template>

@@ -1,12 +1,8 @@
 @import 'tailwindcss';
 
 /* Font imports */
-@import '@fontsource/instrument-serif/400.css';
-@import '@fontsource/instrument-serif/400-italic.css';
-@import '@fontsource/space-grotesk/400.css';
-@import '@fontsource/space-grotesk/500.css';
-@import '@fontsource/space-grotesk/600.css';
-@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/outfit';
 
 /* Design System Colors - "The Digital Lithograph" */
 :root {
@@ -22,19 +18,24 @@
   /* Primary - Burnt Orange (Editorial Accent) */
   --primary: #a33900;
   --primary-container: #c94c0e;
+  --primary-fixed: #ffdbce;
+  --primary-fixed-dim: #ffb599;
   --on-primary: #ffffff;
   --on-primary-container: #3b1300;
+  --on-primary-fixed: #370e00;
 
   /* Secondary - Caribbean Cyan (Tech Accent) */
   --secondary: #006a68;
   --secondary-container: #00504f;
+  --secondary-fixed: #51f9f6;
   --secondary-fixed-dim: #1cdcd9;
+  --on-secondary-fixed: #00201f;
   --on-secondary: #ffffff;
   --on-secondary-container: #002020;
 
   /* Tertiary - Deep Ink Blue */
-  --tertiary: #0d486c;
-  --tertiary-container: #1a5a82;
+  --tertiary: #2e6085;
+  --tertiary-container: #49799f;
   --on-tertiary: #ffffff;
 
   /* Text Colors */
@@ -76,9 +77,9 @@
 
 @theme inline {
   /* Fonts */
-  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-body: 'Outfit', 'Inter', system-ui, sans-serif;
 
   /* Colors */
   --color-surface: var(--surface);
@@ -91,12 +92,17 @@
 
   --color-primary: var(--primary);
   --color-primary-container: var(--primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
   --color-on-primary: var(--on-primary);
+  --color-on-primary-fixed: var(--on-primary-fixed);
 
   --color-secondary: var(--secondary);
   --color-secondary-container: var(--secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
   --color-secondary-fixed-dim: var(--secondary-fixed-dim);
   --color-on-secondary: var(--on-secondary);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
 
   --color-tertiary: var(--tertiary);
   --color-tertiary-container: var(--tertiary-container);
@@ -137,10 +143,12 @@
   /* Editorial Typography */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
+
+  h1 { font-weight: 900; }
 
   /* Labels and technical text */
   .label, .meta, .tag {
@@ -148,6 +156,12 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-size: var(--label-md);
+  }
+
+  /* Text selection - Caribbean cyan accent */
+  ::selection {
+    background-color: #4df6f3;
+    color: #002020;
   }
 }
 
@@ -164,5 +178,10 @@
   /* Ghost Border - 15% opacity for technical requirements */
   .ghost-border {
     border: 1px solid rgba(111, 121, 122, 0.15);
+  }
+
+  /* Ink bleed for headlines */
+  .ink-bleed {
+    text-shadow: 0.5px 0.5px 0px rgba(13, 72, 108, 0.2);
   }
 }
