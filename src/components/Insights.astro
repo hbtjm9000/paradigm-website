@@ -1,0 +1,115 @@
+---
+interface Article {
+  category: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  link: string;
+  featured?: boolean;
+}
+
+const articles: Article[] = [
+  {
+    category: "Systems Engineering",
+    title: "Cloud Arrays & Edge Logic: Powering the Modern Economy",
+    excerpt: "Examining the deployment of integrated cloud computing units in enterprise facilities across the technology landscape.",
+    image: "/images/cloud-engineering.jpg",
+    link: "/insights/cloud-arrays-edge-logic",
+    featured: true
+  },
+  {
+    category: "Security Protocol",
+    title: "The Zero Trust Protocol",
+    excerpt: "Technical audit of enterprise security architecture and its impact on regulated industries.",
+    image: "/images/security-protocol.jpg",
+    link: "/insights/zero-trust-protocol"
+  },
+  {
+    category: "White Paper",
+    title: "Privacy in the Public Square",
+    excerpt: "A philosophical dive into biometric data collection and civil liberties within the enterprise framework.",
+    image: "/images/privacy-paper.jpg",
+    link: "/insights/privacy-public-square"
+  },
+  {
+    category: "Event Recap",
+    title: "The Paradigm Summit 2024",
+    excerpt: "Key takeaways from the gathering of the top 100 technical leads from the enterprise technology landscape.",
+    image: "/images/summit-event.jpg",
+    link: "/insights/paradigm-summit-2024"
+  }
+];
+
+const featuredArticle = articles.find(a => a.featured);
+const regularArticles = articles.filter(a => !a.featured);
+---
+
+<section class="bg-surface-container-low py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Knowledge Base</span>
+      <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1] italic">
+        Latest Documentation
+      </h2>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="grid lg:grid-cols-12 gap-8">
+      
+      <!-- Featured Article -->
+      {featuredArticle && (
+        <article class="lg:col-span-7 group">
+          <a href={featuredArticle.link} class="block">
+            <div class="aspect-[16/10] bg-surface-container overflow-hidden mb-6">
+              <img 
+                src={featuredArticle.image} 
+                alt={featuredArticle.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <span class="font-sans text-xs tracking-[0.15em] text-primary uppercase">{featuredArticle.category}</span>
+            <h3 class="font-serif text-2xl lg:text-3xl text-on-surface mt-3 leading-tight group-hover:text-primary transition-colors">
+              {featuredArticle.title}
+            </h3>
+            <p class="font-body text-on-surface-variant mt-4 leading-relaxed">
+              {featuredArticle.excerpt}
+            </p>
+            <span class="inline-flex items-center gap-2 font-sans text-sm text-primary mt-4 tracking-wide group-hover:gap-3 transition-all">
+              Read Documentation
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </span>
+          </a>
+        </article>
+      )}
+
+      <!-- Secondary Articles -->
+      <div class="lg:col-span-5 flex flex-col gap-8">
+        {regularArticles.slice(0, 3).map((article, index) => (
+          <article class="group flex gap-6">
+            <div class="w-24 h-24 flex-shrink-0 bg-surface-container overflow-hidden">
+              <img 
+                src={article.image} 
+                alt={article.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="flex-1">
+              <span class="font-sans text-xs tracking-[0.15em] text-primary uppercase">{article.category}</span>
+              <a href={article.link}>
+                <h3 class="font-serif text-lg text-on-surface mt-1 leading-tight group-hover:text-primary transition-colors">
+                  {article.title}
+                </h3>
+              </a>
+              <p class="font-body text-sm text-on-surface-variant mt-2 line-clamp-2">
+                {article.excerpt}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.vue';
+---
+
+<BaseLayout title="About | Paradigm IT Services">
+  <Header />
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-tertiary text-on-tertiary py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <span class="font-sans text-xs tracking-[0.2em] text-secondary-fixed-dim uppercase">About Paradigm</span>
+        <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.05] mt-4 max-w-4xl text-balance">
+          Engineering the Next
+          <br />
+          <span class="italic text-secondary-fixed-dim">Paradigm.</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="bg-surface py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24">
+          <div>
+            <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Our Mission</span>
+            <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1]">
+              Organizations don&apos;t fail because of technology.
+            </h2>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="font-body text-on-surface-variant leading-relaxed text-lg">
+              They fail because they are operating on the <strong class="text-on-surface">wrong paradigm</strong>.
+            </p>
+            <p class="font-body text-on-surface-variant leading-relaxed text-lg mt-6">
+              Most IT firms sell tools. Paradigm sells <strong class="text-on-surface">clarity and architecture</strong>. 
+              We help organizations transition to the next technology paradigm through AI strategy, 
+              secure architecture, and precision engineering.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="bg-surface-container-low py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Our Principles</span>
+          <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1]">
+            Core Values
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-surface-container-lowest p-10">
+            <div class="w-12 h-12 bg-tertiary flex items-center justify-center mb-6">
+              <span class="font-serif text-2xl text-secondary-fixed-dim">01</span>
+            </div>
+            <h3 class="font-serif text-2xl text-on-surface">Architecture First</h3>
+            <p class="font-body text-on-surface-variant mt-4 leading-relaxed">
+              Every solution begins with architecture. We design systems that scale, 
+              adapt, and evolve with your business needs.
+            </p>
+          </div>
+
+          <div class="bg-surface-container-lowest p-10">
+            <div class="w-12 h-12 bg-tertiary flex items-center justify-center mb-6">
+              <span class="font-serif text-2xl text-secondary-fixed-dim">02</span>
+            </div>
+            <h3 class="font-serif text-2xl text-on-surface">Technical Excellence</h3>
+            <p class="font-body text-on-surface-variant mt-4 leading-relaxed">
+              We maintain the highest standards of technical precision. Our solutions 
+              are built to last and perform under pressure.
+            </p>
+          </div>
+
+          <div class="bg-surface-container-lowest p-10">
+            <div class="w-12 h-12 bg-tertiary flex items-center justify-center mb-6">
+              <span class="font-serif text-2xl text-secondary-fixed-dim">03</span>
+            </div>
+            <h3 class="font-serif text-2xl text-on-surface">Strategic Partnership</h3>
+            <p class="font-body text-on-surface-variant mt-4 leading-relaxed">
+              We become an extension of your team. Your success is our success, 
+              and we invest in long-term relationships.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach Section -->
+    <section class="bg-surface py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div class="aspect-[4/3] bg-surface-container overflow-hidden">
+            <img 
+              src="/images/summit-event.jpg" 
+              alt="Paradigm team collaboration"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div>
+            <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Our Approach</span>
+            <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1]">
+              Two-Tier Service Structure
+            </h2>
+            <p class="font-body text-on-surface-variant mt-6 leading-relaxed text-lg">
+              Paradigm uses a thoughtfully designed service structure that balances 
+              high-touch strategic consulting with scalable managed services.
+            </p>
+            
+            <div class="mt-10 space-y-6">
+              <div class="flex gap-4">
+                <div class="w-10 h-10 bg-primary flex items-center justify-center flex-shrink-0">
+                  <span class="font-sans text-sm text-on-primary font-bold">T1</span>
+                </div>
+                <div>
+                  <h3 class="font-sans text-lg text-on-surface font-medium">Strategic Consulting</h3>
+                  <p class="font-body text-on-surface-variant mt-1">High margin, high trust engagements focused on architecture and strategy.</p>
+                </div>
+              </div>
+              
+              <div class="flex gap-4">
+                <div class="w-10 h-10 bg-secondary flex items-center justify-center flex-shrink-0">
+                  <span class="font-sans text-sm text-on-secondary font-bold">T2</span>
+                </div>
+                <div>
+                  <h3 class="font-sans text-lg text-on-surface font-medium">Elements (Managed Services)</h3>
+                  <p class="font-body text-on-surface-variant mt-1">Packaged infrastructure services representing foundational digital capabilities.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <Newsletter client:visible />
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+interface Service {
+  label: string;
+  title: string;
+  description: string;
+  tags: string[];
+}
+
+const services: Service[] = [
+  {
+    label: "AI Architecture",
+    title: "AI Strategy",
+    description: "Helping organizations identify and deploy AI opportunities through readiness assessments, architecture design, and automation systems.",
+    tags: ["AI Readiness", "Architecture Design"]
+  },
+  {
+    label: "Solutions",
+    title: "Solutions Architecture",
+    description: "Designing scalable systems for modern organizations through cloud architecture, platform modernization, and integration architecture.",
+    tags: ["Cloud Architecture", "Platform Modernization"]
+  },
+  {
+    label: "Security",
+    title: "Cybersecurity Architecture",
+    description: "Designing security into systems from the beginning through zero trust architectures, security posture design, and compliance architecture.",
+    tags: ["Zero Trust", "Compliance"]
+  }
+];
+---
+
+<section class="bg-surface-container-low py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Core Paradigms</span>
+      <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1]">
+        Strategic Pillars.
+      </h2>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid md:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <article class="bg-surface-container-lowest p-8 lg:p-10 flex flex-col h-full">
+          <!-- Label -->
+          <span class="font-sans text-xs tracking-[0.15em] text-on-surface-variant uppercase">{service.label}</span>
+          
+          <!-- Title -->
+          <h3 class="font-serif text-2xl lg:text-3xl text-on-surface mt-4 leading-tight">{service.title}</h3>
+          
+          <!-- Description -->
+          <p class="font-body text-on-surface-variant mt-4 leading-relaxed flex-grow">
+            {service.description}
+          </p>
+
+          <!-- Tags -->
+          <div class="flex flex-wrap gap-2 mt-6">
+            {service.tags.map((tag) => (
+              <span class="bg-secondary-fixed-dim text-tertiary font-sans text-xs px-3 py-1 tracking-wide">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

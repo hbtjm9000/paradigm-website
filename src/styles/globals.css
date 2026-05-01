@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+/* Font imports */
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+
+/* Custom Switzer-like font - using system fonts as fallback */
+@font-face {
+  font-family: 'Switzer';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inter'), local('Helvetica Neue'), local('Arial');
+}
+
+/* Design System Colors - "The Digital Lithograph" */
+:root {
+  /* Surface Architecture */
+  --surface: #f9f9fa;
+  --surface-dim: #d9dadb;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f4f4;
+  --surface-container: #edeeef;
+  --surface-container-high: #e7e8e9;
+  --surface-container-highest: #e2e2e3;
+
+  /* Primary - Burnt Orange (Editorial Accent) */
+  --primary: #a33900;
+  --primary-container: #c94c0e;
+  --on-primary: #ffffff;
+  --on-primary-container: #3b1300;
+
+  /* Secondary - Caribbean Cyan (Tech Accent) */
+  --secondary: #006a68;
+  --secondary-container: #00504f;
+  --secondary-fixed-dim: #1cdcd9;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #002020;
+
+  /* Tertiary - Deep Ink Blue */
+  --tertiary: #0d486c;
+  --tertiary-container: #1a5a82;
+  --on-tertiary: #ffffff;
+
+  /* Text Colors */
+  --on-surface: #191c1d;
+  --on-surface-variant: #3f4849;
+  --outline: #6f797a;
+  --outline-variant: #bfc8c9;
+
+  /* Error States */
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+
+  /* Spacing Scale */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2.75rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* Typography Scale */
+  --display-lg: 3.5rem;
+  --display-md: 2.75rem;
+  --display-sm: 2.25rem;
+  --headline-lg: 2rem;
+  --headline-md: 1.75rem;
+  --headline-sm: 1.5rem;
+  --title-lg: 1.375rem;
+  --title-md: 1.125rem;
+  --body-lg: 1rem;
+  --body-md: 0.875rem;
+  --label-lg: 0.875rem;
+  --label-md: 0.75rem;
+}
+
+@theme inline {
+  /* Fonts */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Switzer', 'Inter', system-ui, sans-serif;
+
+  /* Colors */
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary: var(--on-secondary);
+
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary: var(--on-tertiary);
+
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+
+  /* No border radius - architectural/editorial feel */
+  --radius-none: 0px;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--surface);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--on-surface);
+    background-color: var(--surface);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Editorial Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  /* Labels and technical text */
+  .label, .meta, .tag {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--label-md);
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Ghost Border - 15% opacity for technical requirements */
+  .ghost-border {
+    border: 1px solid rgba(111, 121, 122, 0.15);
+  }
+}

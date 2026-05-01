@@ -1,0 +1,64 @@
+---
+interface Element {
+  symbol: string;
+  name: string;
+  description: string;
+}
+
+const elements: Element[] = [
+  { symbol: "Em", name: "Email", description: "Business email infrastructure" },
+  { symbol: "Zt", name: "Zero Trust", description: "Identity and access management" },
+  { symbol: "Dp", name: "Digital Presence", description: "Websites and social media platforms" },
+  { symbol: "Bc", name: "Business Continuity", description: "Backup and disaster recovery" },
+  { symbol: "Cl", name: "Cloud", description: "Cloud hosting and infrastructure" },
+];
+---
+
+<section class="bg-surface py-20 lg:py-32">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="mb-16">
+      <span class="font-sans text-xs tracking-[0.2em] text-primary uppercase">Managed Services</span>
+      <h2 class="font-serif text-4xl lg:text-5xl text-on-surface mt-4 leading-[1.1]">
+        The Elements.
+      </h2>
+      <p class="font-body text-on-surface-variant mt-6 max-w-2xl leading-relaxed text-lg">
+        Just like chemistry has fundamental elements, modern companies require 
+        foundational digital capabilities. Elements represent those capabilities.
+      </p>
+    </div>
+
+    <!-- Elements Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      {elements.map((element) => (
+        <div class="bg-surface-container p-6 text-center group hover:bg-tertiary transition-colors duration-300 cursor-pointer">
+          <!-- Symbol -->
+          <div class="inline-block border border-on-surface/20 group-hover:border-white/30 p-4 mb-4">
+            <span class="font-serif text-3xl lg:text-4xl text-on-surface group-hover:text-white transition-colors">{element.symbol}</span>
+          </div>
+          
+          <!-- Name -->
+          <h3 class="font-sans text-sm tracking-wide text-on-surface group-hover:text-white uppercase transition-colors">{element.name}</h3>
+          
+          <!-- Description -->
+          <p class="font-body text-xs text-on-surface-variant group-hover:text-white/70 mt-2 transition-colors">
+            {element.description}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center">
+      <a 
+        href="/elements" 
+        class="inline-flex items-center gap-2 font-sans text-sm text-primary hover:text-secondary transition-colors tracking-wide group"
+      >
+        <span>Explore All Elements</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
