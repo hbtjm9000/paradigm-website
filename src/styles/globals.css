@@ -8,14 +8,6 @@
 @import '@fontsource/space-grotesk/600.css';
 @import '@fontsource/space-grotesk/700.css';
 
-/* Custom Switzer-like font - using system fonts as fallback */
-@font-face {
-  font-family: 'Switzer';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Inter'), local('Helvetica Neue'), local('Arial');
-}
-
 /* Design System Colors - "The Digital Lithograph" */
 :root {
   /* Surface Architecture */
@@ -86,7 +78,7 @@
   /* Fonts */
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-sans: 'Space Grotesk', system-ui, sans-serif;
-  --font-body: 'Switzer', 'Inter', system-ui, sans-serif;
+  --font-body: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 
   /* Colors */
   --color-surface: var(--surface);
