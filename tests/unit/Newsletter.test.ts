@@ -7,6 +7,10 @@ describe('Newsletter.vue', () => {
 
   beforeEach(async () => {
     vi.resetAllMocks();
+    // Mock fetch to return successful response
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
     const mod = await import('../../src/components/Newsletter.vue');
     Newsletter = mod.default;
   });
@@ -28,7 +32,7 @@ describe('Newsletter.vue', () => {
     expect(vm.email).toBe('hal@paradigm.com.jm');
   });
 
-  it('shows success message after simulated submit', async () => {
+  it('shows success message after successful submit', async () => {
     const wrapper = mount(Newsletter, { global: { stubs: { Teleport: true } } });
     await nextTick();
 
@@ -36,8 +40,8 @@ describe('Newsletter.vue', () => {
     const vm = wrapper.vm as any;
     await vm.handleSubmit();
 
-    // Simulation takes ~1000ms
-    await new Promise(r => setTimeout(r, 1500));
+    // With mocked fetch, should complete immediately
+    await new Promise(r => setTimeout(r, 100));
     expect(vm.submitted).toBe(true);
     expect(vm.email).toBe('');
   });

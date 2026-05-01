@@ -35,6 +35,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
+    <!-- GrowthBook Feature Flag SDK -->
+    <script src="https://cdn.growthbook.io/growthbook.min.js" defer></script>
   </head>
   <body class="bg-surface text-on-surface antialiased">
     <!-- Skip to main content for keyboard users (WCAG 2.1 AA) -->

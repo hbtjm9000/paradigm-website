@@ -8,6 +8,10 @@ describe('ContactForm.vue', () => {
 
   beforeEach(async () => {
     vi.resetAllMocks();
+    // Mock fetch to return successful response
+    global.fetch = vi.fn().mockResolvedValue({
+      json: () => Promise.resolve({ success: true }),
+    });
     const mod = await import('../../src/components/ContactForm.vue');
     ContactForm = mod.default;
   });
@@ -49,7 +53,7 @@ describe('ContactForm.vue', () => {
     expect(vm.form.message).toBe('Hello world');
   });
 
-  it('falls back to simulation when FORM_ENDPOINT is empty', async () => {
+  it('submits form successfully with mocked fetch', async () => {
     const wrapper = mount(ContactForm, { global: { stubs: { Teleport: true } } });
     await nextTick();
 
@@ -60,11 +64,12 @@ describe('ContactForm.vue', () => {
     const vm = wrapper.vm as any;
     await vm.handleSubmit();
 
-    // With empty endpoint, should use fallback simulation
-    // Success state should be set after ~1500ms simulation
-    await new Promise(r => setTimeout(r, 2000));
+    // With mocked fetch, should complete immediately
+    await new Promise(r => setTimeout(r, 100));
     expect(vm.submitted).toBe(true);
     expect(vm.form.name).toBe('');
+    expect(vm.form.email).toBe('');
+    expect(vm.form.message).toBe('');
   });
 
   it('populates service dropdown options', async () => {
