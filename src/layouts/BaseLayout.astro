@@ -4,12 +4,16 @@ import '../styles/globals.css';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const { 
   title = "Paradigm IT Services | Engineering the Next Paradigm",
-  description = "Elite technology advisory and architecture firm focused on AI, secure infrastructure, and modern digital platforms."
+  description = "Elite technology advisory and architecture firm focused on AI, secure infrastructure, and modern digital platforms.",
+  ogImage = "/og-default.png",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -17,7 +21,18 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Paradigm IT Services" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
