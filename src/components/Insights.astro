@@ -65,6 +65,8 @@ const regularArticles = articles.filter(a => !a.featured);
               <img 
                 src={featuredArticle.image} 
                 alt={featuredArticle.title}
+                width="800" height="500"
+                loading="lazy"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -93,6 +95,8 @@ const regularArticles = articles.filter(a => !a.featured);
               <img 
                 src={article.image} 
                 alt={article.title}
+                width="96" height="96"
+                loading="lazy"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
