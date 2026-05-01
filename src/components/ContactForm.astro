@@ -1,0 +1,42 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  dark?: boolean;
+}
+
+const {
+  title = "Ready to Get Started?",
+  subtitle = "Contact us to discuss your project and discover how we can help transform your business.",
+  dark = false
+} = Astro.props;
+
+const bgClass = dark ? "bg-surface" : "bg-surface-container-low";
+const textClass = dark ? "text-on-surface" : "text-on-surface";
+const subtitleClass = dark ? "text-on-surface-variant" : "text-on-surface-variant";
+const btnClass = dark ? "bg-primary text-white hover:bg-primary-fixed" : "bg-primary text-white hover:bg-primary-fixed";
+---
+
+<section class={`py-16 lg:py-24 ${bgClass}`}>
+  <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+    <h2 class={`font-serif text-3xl lg:text-4xl ${textClass}`}>{title}</h2>
+    <p class={`font-body mt-4 text-lg ${subtitleClass}`}>{subtitle}</p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="/contact/"
+        class={`inline-flex items-center justify-center px-8 py-4 rounded-lg font-sans font-medium transition-colors ${btnClass}`}
+      >
+        Schedule a Consultation
+      </a>
+      <a
+        href="mailto:hello@serviceparadigm.com"
+        class={`inline-flex items-center justify-center px-8 py-4 rounded-lg font-sans font-medium border transition-colors ${dark ? "border-outline text-on-surface hover:bg-surface-container-low" : "border-outline text-on-surface hover:bg-surface-container-low"}`}
+      >
+        Email Us Directly
+      </a>
+    </div>
+    <p class={`font-sans text-sm mt-6 ${subtitleClass}`}>
+      Or call us at <a href="tel:+18768904060" class="text-primary hover:underline">(876) 890-4060</a>
+    </p>
+  </div>
+</section>
