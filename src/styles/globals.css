@@ -163,6 +163,12 @@
     background-color: #4df6f3;
     color: #002020;
   }
+
+  /* Focus rings — Burnt Orange brand accent (WCAG 2.1 AA visible focus) */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
 }
 
 /* Utility Classes */
