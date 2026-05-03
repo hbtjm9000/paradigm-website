@@ -106,6 +106,26 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue';
 
+// Get current experiment variant from localStorage
+function getHeroVariant(): string {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('exp:hero-copy-test') || 'unknown';
+  }
+  return 'unknown';
+}
+
+// Log conversion to console and GA4
+function logConversion(variant: string): void {
+  console.log(`[Conversion] hero-copy-test: ${variant} → form_submitted`);
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'form_submitted', {
+      experiment_id: 'hero-copy-test',
+      variation_id: variant,
+      page_location: window.location.href,
+    });
+  }
+}
+
 const form = reactive({
   name: '',
   email: '',
@@ -157,6 +177,10 @@ const handleSubmit = async () => {
     form.message = '';
     
     submitted.value = true;
+    
+    // Log conversion with experiment variant
+    const variant = getHeroVariant();
+    logConversion(variant);
     
     // Hide success message after 10 seconds
     setTimeout(() => {

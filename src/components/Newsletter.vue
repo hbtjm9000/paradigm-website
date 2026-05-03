@@ -55,6 +55,26 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+// Get current experiment variant from localStorage
+function getHeroVariant(): string {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('exp:hero-copy-test') || 'unknown';
+  }
+  return 'unknown';
+}
+
+// Log conversion to console and GA4
+function logConversion(variant: string): void {
+  console.log(`[Conversion] hero-copy-test: ${variant} → newsletter_submitted`);
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'newsletter_submitted', {
+      experiment_id: 'hero-copy-test',
+      variation_id: variant,
+      page_location: window.location.href,
+    });
+  }
+}
+
 // Newsletter endpoint - Google Apps Script Web App
 const NEWSLETTER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzeIqCSz4HNpY7SXsXywVRwY8DNubVA-Xw2zR8w0ZO3FyMfNhunUDhyG90mujCYb82f/exec';
 
@@ -85,6 +105,10 @@ const handleSubmit = async () => {
     submitted.value = true;
     isSubmitting.value = false;
     email.value = '';
+    
+    // Log conversion with experiment variant
+    const variant = getHeroVariant();
+    logConversion(variant);
     
     // Reset success message after 5 seconds
     setTimeout(() => {

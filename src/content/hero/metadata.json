@@ -1,0 +1,15 @@
+{
+  "experimentKey": "hero-copy-test",
+  "description": "Homepage hero headline and copy A/B/C test",
+  "variants": ["v1-baseline", "v2-editorial", "v3-direct"],
+  "startDate": "2026-05-03",
+  "hypothesis": "Direct, plain-language headline (v3) will outperform abstract 'future of tech' messaging (v1). Editorial style (v2) may appeal to brand-conscious visitors.",
+  "successMetric": "Contact form submissions, time on page, scroll depth",
+  "status": "active",
+  "trafficSplit": {
+    "v1-baseline": 33.33,
+    "v2-editorial": 33.33,
+    "v3-direct": 33.34
+  },
+  "notes": "Variants stored in variants.json. HeroClient.vue handles rendering. Exposure logged to console + GA4 (if loaded)."
+}

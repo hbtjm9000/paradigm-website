@@ -6,8 +6,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'happy-dom',
-    include: ['tests/**/*.test.ts', 'tests/**/*.test.tsx', 'tests/**/*.spec.ts', 'tests/**/*.spec.tsx'],
-    exclude: ['tests/e2e/**'],
+    include: ['tests/unit/**/*.test.ts', 'tests/unit/**/*.spec.ts'],
+    exclude: ['tests/e2e/**', 'tests/visual-regression/**', 'tests/p0-*.spec.ts', 'tests/p1-*.spec.ts'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'lcov'],

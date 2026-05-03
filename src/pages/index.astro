@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
+import HeroClient from '../components/HeroClient.vue';
 import Mission from '../components/Mission.astro';
 import Services from '../components/Services.astro';
 import Elements from '../components/Elements.astro';
@@ -16,7 +16,7 @@ import Footer from '../components/Footer.astro';
 >
   <Header logoVariant="mono-white" />
   <main id="main">
-    <Hero />
+    <HeroClient client:load />
     <Mission />
     <Services />
     <Elements />
