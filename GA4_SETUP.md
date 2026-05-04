@@ -12,15 +12,11 @@ This integration syncs conversion data from Google Analytics 4 (GA4) to the expe
 
 ## Required Setup in Google Analytics
 
-### Step 1: Find Your GA4 Property ID
+### Step 1: Verify Property ID
 
-The measurement ID `G-SLDE3K52MY` corresponds to a GA4 Property. To find the numeric Property ID:
+The Property ID is: **535898995**
 
-1. Go to [Google Analytics](https://analytics.google.com/)
-2. Select the property for `serviceparadigm.com`
-3. Go to **Admin** (gear icon, bottom left)
-4. Under **Property**, click **Property Settings**
-5. Copy the **Property ID** (numeric, e.g., `123456789`)
+This corresponds to the GA4 property for serviceparadigm.com with measurement ID `G-SLDE3K52MY`.
 
 ### Step 2: Grant Service Account Access
 
@@ -30,12 +26,12 @@ The measurement ID `G-SLDE3K52MY` corresponds to a GA4 Property. To find the num
 4. Select role: **Viewer** (read-only access is sufficient)
 5. Click **Add**
 
-### Step 3: Update Environment Variables
+### Step 3: Update `.env`
 
-Edit `.env`:
+The `.env` file has been updated with the Property ID:
 
 ```bash
-GA4_PROPERTY_ID=<your-numeric-property-id>
+GA4_PROPERTY_ID=535898995
 GA4_CREDENTIALS_PATH=/home/hbtjm/lab/serviceparadigm.com/src/cms/lib/ga4-credentials.json
 ```
 
